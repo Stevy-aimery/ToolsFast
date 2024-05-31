@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
+  @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
   final List<String> categories = [
+    'All',
     'Electronics',
     'Fashion',
     'Home Appliances',
@@ -15,32 +21,76 @@ class Home extends StatelessWidget {
       'price': '699',
       'description': 'A high-end smartphone with a powerful processor.',
       'image': 'https://via.placeholder.com/150',
+      'category': 'Electronics',
     },
     {
       'name': 'Laptop',
       'price': '999',
       'description': 'A sleek laptop with great performance.',
       'image': 'https://via.placeholder.com/150',
+      'category': 'Electronics',
     },
     {
       'name': 'Headphones',
       'price': '199',
       'description': 'Noise-cancelling over-ear headphones.',
       'image': 'https://via.placeholder.com/150',
+      'category': 'Electronics',
     },
     {
       'name': 'Smartwatch',
       'price': '299',
       'description': 'A smartwatch with various health-tracking features.',
       'image': 'https://via.placeholder.com/150',
+      'category': 'Electronics',
     },
     {
       'name': 'Camera',
       'price': '499',
       'description': 'A DSLR camera with high resolution.',
       'image': 'https://via.placeholder.com/150',
+      'category': 'Electronics',
+    },
+    {
+      'name': 'T-shirt',
+      'price': '29',
+      'description': 'A comfortable cotton T-shirt.',
+      'image': 'https://via.placeholder.com/150',
+      'category': 'Fashion',
+    },
+    {
+      'name': 'Blender',
+      'price': '49',
+      'description': 'A powerful blender for smoothies and shakes.',
+      'image': 'https://via.placeholder.com/150',
+      'category': 'Home Appliances',
+    },
+    {
+      'name': 'Novel',
+      'price': '19',
+      'description': 'An engaging mystery novel.',
+      'image': 'https://via.placeholder.com/150',
+      'category': 'Books',
+    },
+    {
+      'name': 'Toy Car',
+      'price': '15',
+      'description': 'A small toy car for kids.',
+      'image': 'https://via.placeholder.com/150',
+      'category': 'Toys',
     },
   ];
+
+  String selectedCategory = 'All';
+
+  List<Map<String, String>> get filteredProducts {
+    if (selectedCategory == 'All') {
+      return products;
+    }
+    return products
+        .where((product) => product['category'] == selectedCategory)
+        .toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,17 +120,33 @@ class Home extends StatelessWidget {
               ),
               SizedBox(height: 10),
               Container(
-                height: 100,
+                height: 50,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
                   itemCount: categories.length,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Chip(
-                        label: Text(categories[index]),
-                        backgroundColor: Colors.blue,
-                        labelStyle: TextStyle(color: Colors.white),
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedCategory = categories[index];
+                        });
+                      },
+                      child: Container(
+                        margin: EdgeInsets.symmetric(horizontal: 8.0),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 16.0, vertical: 8.0),
+                        decoration: BoxDecoration(
+                          color: selectedCategory == categories[index]
+                              ? Colors.blue
+                              : Colors.grey,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Center(
+                          child: Text(
+                            categories[index],
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
                       ),
                     );
                   },
@@ -101,9 +167,9 @@ class Home extends StatelessWidget {
                   mainAxisSpacing: 10,
                   childAspectRatio: 0.8,
                 ),
-                itemCount: products.length,
+                itemCount: filteredProducts.length,
                 itemBuilder: (context, index) {
-                  final product = products[index];
+                  final product = filteredProducts[index];
                   return Card(
                     elevation: 5,
                     child: Column(
