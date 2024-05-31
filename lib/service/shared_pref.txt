@@ -1,0 +1,18 @@
+import 'package:shared_preferences/shared_preferences.dart';
+
+class SharedPreferenceHelper {
+  Future<String?> getUserId() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('userId');
+  }
+
+  Future<String?> getUserWallet() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('wallet');
+  }
+
+  Future<void> saveUserWallet(String wallet) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('wallet', wallet);
+  }
+}
