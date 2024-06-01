@@ -87,20 +87,6 @@ class Started extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Image.network(
-              'https://i.pinimg.com/564x/1c/2a/fd/1c2afd5df5bc136bfbae9ce51386cd5f.jpg',
-              width: 40,
-              height: 40,
-            ),
-            SizedBox(width: 10),
-            Text('Started',
-                style: TextStyle(color: Colors.black)), // Example color
-          ],
-        ),
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
