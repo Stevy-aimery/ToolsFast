@@ -76,7 +76,8 @@ class _HomeState extends State<Home> {
       'name': 'Toy Car',
       'price': '15',
       'description': 'A small toy car for kids.',
-      'image': 'https://via.placeholder.com/150',
+      'image':
+          'https://i.pinimg.com/564x/1c/2a/fd/1c2afd5df5bc136bfbae9ce51386cd5f.jpg',
       'category': 'Toys',
     },
   ];
@@ -99,7 +100,8 @@ class _HomeState extends State<Home> {
         title: Row(
           children: [
             Image.network(
-              'https://via.placeholder.com/40', // Replace with your logo URL
+              'https://i.pinimg.com/564x/1c/2a/fd/1c2afd5df5bc136bfbae9ce51386cd5f.jpg', // Replace with your logo URL
+              // 'assets/Logo.png', // Replace with your logo URL
               width: 40,
               height: 40,
             ),
@@ -165,21 +167,29 @@ class _HomeState extends State<Home> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 0.7,
                 ),
                 itemCount: filteredProducts.length,
                 itemBuilder: (context, index) {
                   final product = filteredProducts[index];
                   return Card(
                     elevation: 5,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.network(
-                          product['image']!,
-                          height: 120,
-                          width: double.infinity,
-                          fit: BoxFit.cover,
+                        ClipRRect(
+                          borderRadius: BorderRadius.vertical(
+                            top: Radius.circular(15),
+                          ),
+                          child: Image.network(
+                            product['image']!,
+                            height: 120,
+                            width: double.infinity,
+                            fit: BoxFit.cover,
+                          ),
                         ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
@@ -203,6 +213,22 @@ class _HomeState extends State<Home> {
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
                                 style: TextStyle(fontSize: 12),
+                              ),
+                              SizedBox(height: 10),
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    // Handle the buy now action
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.blue,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                  child: const Text('Buy Now'),
+                                ),
                               ),
                             ],
                           ),

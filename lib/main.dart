@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:toolsfast/pages/bottom_nav.dart';
+// import 'package:toolsfast/pages/bottom_nav.dart';
+import 'package:toolsfast/pages/started.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const BottomNav(),
+      // home: const BottomNav(),
+      home: const Started(),
     );
   }
 }
