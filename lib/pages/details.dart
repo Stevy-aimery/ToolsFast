@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:toolsfast/pages/order.dart';
 
-class ProductDetails extends StatelessWidget {
+class ProductDetails extends StatefulWidget {
   final Map<String, String> product;
 
   const ProductDetails({super.key, required this.product});
 
   @override
+  _ProductDetailsState createState() => _ProductDetailsState();
+}
+
+class _ProductDetailsState extends State<ProductDetails> {
+  List<Map<String, String>> cartItems = [];
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(product['name']!),
+        title: Text(widget.product['name']!),
         backgroundColor: Color.fromRGBO(121, 60, 72, 1),
       ),
       body: Padding(
@@ -18,30 +26,41 @@ class ProductDetails extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Image.network(
-              product['image']!,
+              widget.product['image']!,
               height: 200,
               width: double.infinity,
               fit: BoxFit.cover,
             ),
             SizedBox(height: 20),
             Text(
-              product['name']!,
+              widget.product['name']!,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
             Text(
-              '${product['price']} Dhs',
+              '${widget.product['price']} Dhs',
               style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 238, 77, 77)),
             ),
             SizedBox(height: 10),
             Text(
-              product['description']!,
+              widget.product['description']!,
               style: TextStyle(fontSize: 16),
             ),
             Spacer(),
             ElevatedButton(
               onPressed: () {
-                // Handle add to cart action
+                // Add the current product to the cart
+                setState(() {
+                  cartItems.add(widget.product);
+                });
+
+                // Navigate to the OrderPage
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OrderPage(cartItems: cartItems),
+                  ),
+                );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Color.fromRGBO(121, 60, 72, 1),

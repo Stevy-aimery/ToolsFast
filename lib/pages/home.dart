@@ -128,19 +128,6 @@ class _HomeState extends State<Home> {
           ],
         ),
         backgroundColor: Color.fromRGBO(121, 60, 72, 1),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.shopping_cart),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => OrderPage(cartItems: cartItems),
-                ),
-              );
-            },
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
