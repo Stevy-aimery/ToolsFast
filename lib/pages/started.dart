@@ -68,7 +68,7 @@ class ButtonWidget extends StatelessWidget {
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Color.fromRGBO(255, 253, 253, 1), // Example color
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsets.symmetric(horizontal: 5, vertical: 8),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
