@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:toolsfast/pages/bottom_nav.dart';
+import 'package:toolsfast/pages/sign_up.dart';
 
 class LogIn extends StatefulWidget {
-  const LogIn({super.key}); 
+  const LogIn({super.key});
 
   @override
   State<LogIn> createState() => _LogInState();
@@ -29,6 +31,15 @@ class _LogInState extends State<LogIn> {
     );
   }
 
+  static TextStyle boldText() {
+    return TextStyle(
+      color: const Color.fromARGB(255, 156, 106, 106),
+      fontSize: 16.0,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Poppins',
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,8 +54,8 @@ class _LogInState extends State<LogIn> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFFff5c30),
-                    Color(0xFFe74b1a),
+                    Color.fromRGBO(127, 62, 75, 1),
+                    Color.fromRGBO(121, 60, 72, 1),
                   ],
                 ),
               ),
@@ -65,142 +76,156 @@ class _LogInState extends State<LogIn> {
             ),
             Container(
               margin: EdgeInsets.only(top: 60.0, left: 20.0, right: 20.0),
-              child: Column(
-                children: [
-                  Center(
-                    child: Image.asset(
-                      "images/logo.png",
-                      width: MediaQuery.of(context).size.width / 1.5,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 50.0,
-                  ),
-                  Material(
-                    elevation: 5.0,
-                    borderRadius: BorderRadius.circular(20),
-                    child: Container(
-                      padding: EdgeInsets.only(left: 20.0, right: 20.0),
-                      width: MediaQuery.of(context).size.width,
-                      height: MediaQuery.of(context).size.height / 2,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Center(
+                      child: Image.asset(
+                        "images/Logo2-Removebg.png",
+                        width: MediaQuery.of(context).size.width / 1.5,
+                        fit: BoxFit.cover,
                       ),
-                      child: Form(
-                        key: _formkey,
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            Text(
-                              "Login",
-                              style: headlineTextStyle(),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            TextFormField(
-                              controller: useremailcontroller,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please Enter Email';
-                                }
-                                return null;
-                              },
-                              decoration: InputDecoration(
-                                hintText: 'Email',
-                                hintStyle: semiBoldTextFieldStyle(),
-                                prefixIcon: Icon(Icons.email_outlined),
+                    ),
+                    SizedBox(
+                      height: 50.0,
+                    ),
+                    Material(
+                      elevation: 5.0,
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                        width: MediaQuery.of(context).size.width,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        child: Form(
+                          key: _formkey,
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height: 30.0,
                               ),
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            TextFormField(
-                              controller: userpasswordcontroller,
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please Enter Password';
-                                }
-                                return null;
-                              },
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                hintText: 'Password',
-                                hintStyle: semiBoldTextFieldStyle(),
-                                prefixIcon: Icon(Icons.password_outlined),
+                              Text(
+                                "Login",
+                                style: headlineTextStyle(),
                               ),
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                // Naviguer vers Forgot Password
-                              },
-                              child: Container(
-                                alignment: Alignment.topRight,
-                                child: Text(
-                                  "Forgot Password?",
-                                  style: semiBoldTextFieldStyle(),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: useremailcontroller,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please Enter Email';
+                                  }
+                                  return null;
+                                },
+                                decoration: InputDecoration(
+                                  hintText: 'Email',
+                                  hintStyle: semiBoldTextFieldStyle(),
+                                  prefixIcon: Icon(Icons.email_outlined),
                                 ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 80.0,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                if (_formkey.currentState!.validate()) {
-                                  setState(() {
-                                    // Logique pour le login
-                                  });
-                                }
-                              },
-                              child: Material(
-                                elevation: 5.0,
-                                borderRadius: BorderRadius.circular(20),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                controller: userpasswordcontroller,
+                                validator: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please Enter Password';
+                                  }
+                                  return null;
+                                },
+                                obscureText: true,
+                                decoration: InputDecoration(
+                                  hintText: 'Password',
+                                  hintStyle: semiBoldTextFieldStyle(),
+                                  prefixIcon: Icon(Icons.password_outlined),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20.0,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  // Naviguer vers Forgot Password
+                                },
                                 child: Container(
-                                  padding: EdgeInsets.symmetric(vertical: 8.0),
-                                  width: 200,
-                                  decoration: BoxDecoration(
-                                    color: Color(0Xffff5722),
-                                    borderRadius: BorderRadius.circular(20),
+                                  alignment: Alignment.topRight,
+                                  child: Text(
+                                    "Forgot Password?",
+                                    style: semiBoldTextFieldStyle(),
                                   ),
-                                  child: Center(
-                                    child: Text(
-                                      "LOGIN",
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 60.0,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  if (_formkey.currentState!.validate()) {
+                                    setState(() {
+                                      // Logique pour le login
+
+                                      // Route to Accueil
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => BottomNav(),
+                                        ),
+                                      );
+                                    });
+                                  }
+                                },
+                                child: Material(
+                                  elevation: 5.0,
+                                  borderRadius: BorderRadius.circular(20),
+                                  child: Container(
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 8.0),
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                      color: Color.fromRGBO(121, 60, 72, 1),
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                    child: Center(
+                                      child: Text(
+                                        "LOGIN",
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 70.0,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      // Naviguer vers Sign Up
-                    },
-                    child: Text(
-                      "Don't have an account? Sign up",
-                      style: semiBoldTextFieldStyle(),
+                    SizedBox(
+                      height: 70.0,
                     ),
-                  ),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        // Naviguer vers SignUp
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUp()),
+                        );
+                      },
+                      child: Text(
+                        "Don't have an account? Sign up",
+                        style: boldText(),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

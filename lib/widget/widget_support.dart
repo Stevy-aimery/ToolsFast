@@ -1,4 +1,4 @@
-import 'package:flutter/painting.dart';
+// import 'package:flutter/painting.dart';
 import 'package:flutter/material.dart';
 
 class ApppWidget {
@@ -6,6 +6,15 @@ class ApppWidget {
     return TextStyle(
       color: Colors.black,
       fontSize: 20.0,
+      fontWeight: FontWeight.bold,
+      fontFamily: 'Poppins',
+    );
+  }
+
+  static TextStyle boldText() {
+    return TextStyle(
+      color: Colors.black,
+      fontSize: 10.0,
       fontWeight: FontWeight.bold,
       fontFamily: 'Poppins',
     );
