@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:toolsfast/pages/details.dart';
+import 'package:toolsfast/pages/order.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
   final List<String> categories = [
     'All',
+    'Books',
     'Electronics',
     'Fashion',
     'Home Appliances',
-    'Books',
     'Toys',
   ];
 
@@ -20,7 +25,7 @@ class _HomeState extends State<Home> {
       'name': 'Smartphone',
       'price': '699',
       'description': 'A high-end smartphone with a powerful processor.',
-      'image': 'https://via.placeholder.com/150',
+      'image': 'images/Logo2.png',
       'category': 'Electronics',
     },
     {
@@ -55,7 +60,7 @@ class _HomeState extends State<Home> {
       'name': 'T-shirt',
       'price': '29',
       'description': 'A comfortable cotton T-shirt.',
-      'image': 'https://via.placeholder.com/150',
+      'image': 'image/Logo2-Removebg.png',
       'category': 'Fashion',
     },
     {
@@ -68,6 +73,13 @@ class _HomeState extends State<Home> {
     {
       'name': 'Novel',
       'price': '19',
+      'description': 'An engaging mystery novel.',
+      'image': 'images/Logo.png',
+      'category': 'Books',
+    },
+    {
+      'name': 'Roman',
+      'price': '20',
       'description': 'An engaging mystery novel.',
       'image': 'https://via.placeholder.com/150',
       'category': 'Books',
@@ -83,6 +95,7 @@ class _HomeState extends State<Home> {
   ];
 
   String selectedCategory = 'All';
+  List<Map<String, String>> cartItems = [];
 
   List<Map<String, String>> get filteredProducts {
     if (selectedCategory == 'All') {
@@ -93,35 +106,57 @@ class _HomeState extends State<Home> {
         .toList();
   }
 
+  void addToCart(Map<String, String> product) {
+    setState(() {
+      cartItems.add(product);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
-            Image.network(
-              'https://i.pinimg.com/564x/1c/2a/fd/1c2afd5df5bc136bfbae9ce51386cd5f.jpg', // Replace with your logo URL
-              // 'assets/Logo.png', // Replace with your logo URL
+            Image.asset(
+              'images/Logo2-Removebg.png', 
               width: 40,
               height: 40,
             ),
-            SizedBox(width: 10),
+            SizedBox(width: 50),
             Text('Home'),
           ],
         ),
+        backgroundColor: Color.fromRGBO(121, 60, 72, 1),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.shopping_cart),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OrderPage(cartItems: cartItems),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(10.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Categories',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
-              Container(
+              SizedBox(
                 height: 50,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
@@ -139,14 +174,16 @@ class _HomeState extends State<Home> {
                             horizontal: 16.0, vertical: 8.0),
                         decoration: BoxDecoration(
                           color: selectedCategory == categories[index]
-                              ? Colors.blue
-                              : Colors.grey,
+                              ? Color.fromRGBO(121, 60, 72, 1)
+                              : Color.fromARGB(255, 130, 107, 107),
                           borderRadius: BorderRadius.circular(20),
                         ),
                         child: Center(
                           child: Text(
                             categories[index],
-                            style: TextStyle(color: Colors.white),
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300),
                           ),
                         ),
                       ),
@@ -157,7 +194,10 @@ class _HomeState extends State<Home> {
               SizedBox(height: 20),
               Text(
                 'Products',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 10),
               GridView.builder(
@@ -186,7 +226,7 @@ class _HomeState extends State<Home> {
                           ),
                           child: Image.network(
                             product['image']!,
-                            height: 120,
+                            height: 110,
                             width: double.infinity,
                             fit: BoxFit.cover,
                           ),
@@ -204,30 +244,47 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                               SizedBox(height: 5),
-                              Text('\$${product['price']}',
+                              Text('${product['price']} Dhs',
                                   style: TextStyle(
-                                      fontSize: 16, color: Colors.green)),
+                                      fontSize: 16,
+                                      color: Color.fromARGB(255, 238, 77, 77),
+                                      fontWeight: FontWeight.bold)),
                               SizedBox(height: 5),
                               Text(
                                 product['description']!,
                                 maxLines: 2,
                                 overflow: TextOverflow.ellipsis,
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(
+                                    fontFamily: 'Poppins', fontSize: 12),
                               ),
                               SizedBox(height: 10),
                               Align(
                                 alignment: Alignment.bottomRight,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    // Handle the buy now action
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => ProductDetails(
+                                          product: product,
+                                        ),
+                                      ),
+                                    );
                                   },
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.blue,
+                                    backgroundColor:
+                                        Color.fromRGBO(121, 60, 72, 1),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(20),
                                     ),
                                   ),
-                                  child: const Text('Buy Now'),
+                                  child: const Text(
+                                    'Buy now',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
