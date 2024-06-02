@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toolsfast/pages/login.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -44,8 +45,8 @@ class _SignUpState extends State<SignUp> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                     Color.fromRGBO(121, 60, 72, 1),
-                     Color.fromRGBO(133, 65, 78, 1),
+                    Color.fromRGBO(121, 60, 72, 1),
+                    Color.fromRGBO(133, 65, 78, 1),
                   ],
                 ),
               ),
@@ -159,7 +160,14 @@ class _SignUpState extends State<SignUp> {
                               onTap: () {
                                 if (_formkey.currentState!.validate()) {
                                   setState(() {
-                                    // Logique pour le sign up
+                                    // Logique pour le sign up ici
+
+                                    // Redirigerection apres enregidtrement vers la page de login
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => LogIn()),
+                                    );
                                   });
                                 }
                               },
@@ -197,6 +205,10 @@ class _SignUpState extends State<SignUp> {
                   GestureDetector(
                     onTap: () {
                       // Logique pour rediriger vers la page de login
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => LogIn()),
+                      );
                     },
                     child: Text(
                       "Already have an account? Login",
@@ -212,5 +224,3 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
-
-// Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn()));
