@@ -39,13 +39,13 @@ class _SignUpState extends State<SignUp> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height / 2.5,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color(0xFFff5c30),
-                    Color(0xFFe74b1a),
+                     Color.fromRGBO(121, 60, 72, 1),
+                     Color.fromRGBO(133, 65, 78, 1),
                   ],
                 ),
               ),
@@ -170,7 +170,7 @@ class _SignUpState extends State<SignUp> {
                                   padding: EdgeInsets.symmetric(vertical: 8.0),
                                   width: 200,
                                   decoration: BoxDecoration(
-                                    color: Color(0Xffff5722),
+                                    color: Color.fromRGBO(121, 60, 72, 1),
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                   child: Center(
@@ -212,3 +212,5 @@ class _SignUpState extends State<SignUp> {
     );
   }
 }
+
+// Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn()));

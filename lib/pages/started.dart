@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:toolsfast/pages/login.dart';
+import 'package:toolsfast/pages/sign_up.dart';
 
 class TitleWidget extends StatelessWidget {
   final String text;
@@ -8,7 +10,7 @@ class TitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 20),
+      margin: const EdgeInsets.only(top: 50),
       child: Text(
         text,
         textAlign: TextAlign.center,
@@ -32,7 +34,7 @@ class SubtitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 12),
+      margin: EdgeInsets.only(top: 15),
       child: Text(
         text,
         textAlign: TextAlign.center,
@@ -56,10 +58,13 @@ class ButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(top: 32),
+      margin: const EdgeInsets.only(top: 75),
       child: ElevatedButton(
         onPressed: () {
-          // Handle button press
+          // Navigate to the login screen
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => SignUp()));
+          // Navigator.pushNamed(context, '/login');
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Color.fromRGBO(255, 253, 253, 1), // Example color
@@ -95,13 +100,15 @@ class Started extends StatelessWidget {
             children: [
               Center(
                 child: Container(
-                  padding: EdgeInsets.all(16),
-                  margin: EdgeInsets.symmetric(horizontal: 12, vertical: 20),
+                  height: MediaQuery.of(context).size.height,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(115, 60, 71, 1), // Example color
                     borderRadius: BorderRadius.circular(30),
                   ),
-                  constraints: BoxConstraints(maxWidth: 480),
+                  constraints: BoxConstraints(maxWidth: 600),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
