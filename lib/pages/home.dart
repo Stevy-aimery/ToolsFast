@@ -95,8 +95,12 @@ class _HomeState extends State<Home> {
 
   String selectedCategory = 'All';
   List<Map<String, String>> cartItems = [];
+  List<Map<String, String>> searchResults = [];
 
   List<Map<String, String>> get filteredProducts {
+    if (searchResults.isNotEmpty) {
+      return searchResults;
+    }
     if (selectedCategory == 'All') {
       return products;
     }
@@ -126,6 +130,15 @@ class _HomeState extends State<Home> {
               Padding(
                 padding: const EdgeInsets.only(top: 50.0, bottom: 30.0),
                 child: TextField(
+                  onChanged: (value) {
+                    setState(() {
+                      searchResults = products.where((product) {
+                        return product['name']!
+                            .toLowerCase()
+                            .contains(value.toLowerCase());
+                      }).toList();
+                    });
+                  },
                   decoration: InputDecoration(
                     hintText: 'Search product',
                     prefixIcon: Icon(Icons.search),
@@ -161,6 +174,7 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         setState(() {
                           selectedCategory = categories[index];
+                          searchResults = [];
                         });
                       },
                       child: Container(
