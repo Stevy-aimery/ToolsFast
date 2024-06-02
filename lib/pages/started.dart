@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:toolsfast/pages/login.dart';
 import 'package:toolsfast/pages/sign_up.dart';
 
 class TitleWidget extends StatelessWidget {
@@ -112,11 +111,16 @@ class Started extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Image.network(
-                        'https://cdn.builder.io/api/v1/image/assets/TEMP/00b6535f2ed8d26e81e8003cb888e72849cd0855bd54093c986535027569af84?apiKey=9ddf1e92aea345b5a071da762e0b1421&',
-                        width: 353,
+                       Image.asset(
+                        "images/Logo2-Removebg.png",
+                        width: MediaQuery.of(context).size.width,
                         fit: BoxFit.cover,
                       ),
+                      // Image.network(
+                      //   'https://cdn.builder.io/api/v1/image/assets/TEMP/00b6535f2ed8d26e81e8003cb888e72849cd0855bd54093c986535027569af84?apiKey=9ddf1e92aea345b5a071da762e0b1421&',
+                      //   width: 353,
+                      //   fit: BoxFit.cover,
+                      // ),
                       const TitleWidget(text: 'Welcome'),
                       const SubtitleWidget(
                           text: 'to your buying and selling application'),

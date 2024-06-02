@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:toolsfast/pages/started.dart';
 
 class Profile extends StatelessWidget {
-  final String profileImage = 'https://via.placeholder.com/120';
+  final String profileImage = 'images/Logo.png';
   final String name = 'John Doe';
   final String email = 'john.doe@example.com';
 
@@ -17,7 +18,7 @@ class Profile extends StatelessWidget {
             children: [
               Container(
                 height: 150,
-                color: Colors.black,
+                color: Color.fromRGBO(115, 60, 71, 1),
                 child: Center(
                   child: Text(
                     name,
@@ -64,11 +65,13 @@ class Profile extends StatelessWidget {
               // Handle account deletion
             },
           ),
+          
           ListTile(
             leading: Icon(Icons.logout),
             title: Text('LogOut'),
             onTap: () {
               // Handle logout
+              Navigator.push( context,MaterialPageRoute(builder: (context) => Started()));
             },
           ),
         ],

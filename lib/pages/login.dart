@@ -220,7 +220,7 @@ class _LogInState extends State<LogIn> {
                         );
                       },
                       child: Text(
-                        "Don't have an account? Sign up",
+                        "Don't have an account? 👉 Sign up",
                         style: boldText(),
                       ),
                     ),
