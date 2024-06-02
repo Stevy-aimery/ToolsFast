@@ -39,7 +39,8 @@ class _ProductDetailsState extends State<ProductDetails> {
             SizedBox(height: 10),
             Text(
               '${widget.product['price']} Dhs',
-              style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 238, 77, 77)),
+              style: TextStyle(
+                  fontSize: 20, color: Color.fromARGB(255, 238, 77, 77)),
             ),
             SizedBox(height: 10),
             Text(
@@ -68,9 +69,17 @@ class _ProductDetailsState extends State<ProductDetails> {
                   borderRadius: BorderRadius.circular(20),
                 ),
               ),
-              child: const Text(
-                'Add to Cart',
-                style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  Icon(Icons.shopping_cart, color: Colors.white),
+                  SizedBox(width: 8),
+                  Text(
+                    'Add to Cart',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  ),
+                ],
               ),
             ),
           ],

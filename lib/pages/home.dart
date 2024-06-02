@@ -17,7 +17,6 @@ class _HomeState extends State<Home> {
     'Electronics',
     'Fashion',
     'Home Appliances',
-    'Toys',
   ];
 
   final List<Map<String, String>> products = [
@@ -85,12 +84,12 @@ class _HomeState extends State<Home> {
       'category': 'Books',
     },
     {
-      'name': 'Toy Car',
+      'name': 'clothing',
       'price': '15',
       'description': 'A small toy car for kids.',
       'image':
           'https://i.pinimg.com/564x/1c/2a/fd/1c2afd5df5bc136bfbae9ce51386cd5f.jpg',
-      'category': 'Toys',
+      'category': 'Books',
     },
   ];
 
@@ -106,24 +105,13 @@ class _HomeState extends State<Home> {
         .toList();
   }
 
-  void addToCart(Map<String, String> product) {
-    setState(() {
-      cartItems.add(product);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
-            Image.asset(
-              'images/Logo2-Removebg.png', 
-              width: 40,
-              height: 40,
-            ),
-            SizedBox(width: 50),
+            SizedBox(width: 30),
             Text('Home'),
           ],
         ),
@@ -135,12 +123,32 @@ class _HomeState extends State<Home> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Categories',
-                style: TextStyle(
+              Padding(
+                padding: const EdgeInsets.only(top: 50.0, bottom: 30.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Search product',
+                    prefixIcon: Icon(Icons.search),
+                    suffixIcon: IconButton(
+                      icon: Icon(Icons.filter_list),
+                      onPressed: () {},
+                    ),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5.0, bottom: 5.0),
+                child: Text(
+                  'Categories',
+                  style: TextStyle(
                     fontFamily: 'Poppins',
                     fontSize: 24,
-                    fontWeight: FontWeight.bold),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               SizedBox(height: 10),
               SizedBox(
