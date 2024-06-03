@@ -7,15 +7,17 @@ class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key, required this.product});
 
   @override
-  // ignore: library_private_types_in_public_api
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
 class _ProductDetailsState extends State<ProductDetails> {
   List<Map<String, String>> cartItems = [];
+  double total = 0.0; // Define the total variable here
 
   @override
   Widget build(BuildContext context) {
+    total = double.parse(widget.product['price']!); // Set the initial total to the product price
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.product['name']!),
@@ -28,7 +30,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           children: [
             Image.network(
               widget.product['image']!,
-              height: 530,
+              height: 430,
               width: double.infinity,
               fit: BoxFit.cover,
             ),
@@ -48,9 +50,31 @@ class _ProductDetailsState extends State<ProductDetails> {
               widget.product['description']!,
               style: TextStyle(fontSize: 16),
             ),
+            SizedBox(height: 25),
+            Divider(),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Total Price',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text('${total.toString()} Dhs'),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ElevatedButton(
+                onPressed: () {
+                  // Handle checkout logic here
+                },
+                child: Text('CheckOut'),
+              ),
+            ),
             Spacer(),
             Container(
-              padding: EdgeInsets.only(bottom: 30),
+              padding: EdgeInsets.only(bottom: 20),
               child: Center(
                 child: ElevatedButton(
                   onPressed: () {
@@ -60,13 +84,23 @@ class _ProductDetailsState extends State<ProductDetails> {
                       setState(() {
                         cartItems.add(widget.product);
                       });
-                    }
 
-                    // Navigate to the OrderPage
+                      // Navigate to the OrderPage with the updated cartItems list
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => OrderPage(
+                            cartItems: cartItems,
+                          ),
+                        ),
+                      );
+                    }
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => OrderPage(cartItems: cartItems),
+                        builder: (context) => OrderPage(
+                          cartItems: cartItems,
+                        ),
                       ),
                     );
                   },
@@ -82,7 +116,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                       Icon(Icons.shopping_cart, color: Colors.white),
                       SizedBox(width: 10),
                       Text(
-                        'Add to Cart',
+                        'Validate payment',
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,

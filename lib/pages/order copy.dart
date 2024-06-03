@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class Order extends StatelessWidget {
   final List<Map<String, String>> orders = [
-    {
+    { 
       'name': 'Pizza',
       'quantity': '2',
       'total': '20',
@@ -58,7 +58,7 @@ class Order extends StatelessWidget {
               onPressed: () {
                 // Handle checkout logic here
               },
-              child: Text('CheckOut'),
+              child: Text('Check balance'),
             ),
           ),
         ],
