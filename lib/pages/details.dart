@@ -27,7 +27,7 @@ class _ProductDetailsState extends State<ProductDetails> {
           children: [
             Image.network(
               widget.product['image']!,
-              height: 200,
+              height: 530,
               width: double.infinity,
               fit: BoxFit.cover,
             ),
