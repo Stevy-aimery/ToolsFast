@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:toolsfast/pages/home.dart';
 // import 'package:toolsfast/pages/order copy.dart';
 import 'package:toolsfast/pages/profile.dart';
-import 'package:toolsfast/pages/wallet.dart';
+import 'package:toolsfast/pages/myCount.dart';
 
 class BottomNav extends StatefulWidget {
   const BottomNav({super.key});

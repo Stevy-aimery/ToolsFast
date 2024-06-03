@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:toolsfast/pages/order.dart';
-import 'package:toolsfast/pages/see_compte.dart';
+import 'package:toolsfast/pages/payComfirme.dart';
+import 'package:toolsfast/pages/seeSolde.dart';
 
 class ProductDetails extends StatefulWidget {
   final Map<String, String> product;

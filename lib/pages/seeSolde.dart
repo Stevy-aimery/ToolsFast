@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Wallet extends StatelessWidget {
-  final int balance = 100; // Simulated wallet balance
+class SeeCompte extends StatelessWidget {
+  const SeeCompte({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final int balance = 50; // Balance variable moved inside the build method
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Solde compte'),
+        title: Text('See Your Solde', style : TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Color.fromRGBO(121, 60, 72, 1),
-        centerTitle: true,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios, color: Colors.black),
-          onPressed: () {},
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -24,9 +21,9 @@ class Wallet extends StatelessWidget {
               elevation: 2,
               child: ListTile(
                 leading: Icon(Icons.account_balance_wallet,
-                    size: 40, color: Colors.orange),
-                title: Text('Your Solde'),
-                subtitle: Text('0 Dhs'),
+                    size: 50, color: Colors.orange),
+                title: Text('Your Solde', style: TextStyle(fontWeight: FontWeight.bold)),
+                subtitle: Text('$balance Dhs',  style : TextStyle(fontWeight: FontWeight.bold)),
               ),
             ),
             SizedBox(height: 16),
@@ -52,9 +49,9 @@ class Wallet extends StatelessWidget {
             Center(
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text('Add Money'),
+                child: Text('Add Money', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white, fontSize: 20)),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.teal,
+                  backgroundColor: Color.fromRGBO(121, 60, 72, 1),
                   padding: EdgeInsets.symmetric(horizontal: 40, vertical: 16),
                 ),
               ),
