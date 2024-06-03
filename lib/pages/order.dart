@@ -11,18 +11,30 @@ class OrderPage extends StatefulWidget {
 
 class _OrderPageState extends State<OrderPage> {
   @override
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Confirmation of purchase'),
+        title: Text('Confirmation of purchase', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Color.fromRGBO(121, 60, 72, 1),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(100.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Purchase made successfully !!'),
-            Text('Delivery in 3 hours to the pergola'),
+            Icon(Icons.check_circle_outline, size: 100, color: Colors.green),
+            SizedBox(height: 20),
+            Text(
+              'Purchase made successfully!!',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Delivery in 3 hours to the pergola',
+              style: TextStyle(fontSize: 16),
+            ),
+            SizedBox(height: 25),
+            Divider(),
             SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
@@ -35,5 +47,13 @@ class _OrderPageState extends State<OrderPage> {
         ),
       ),
     );
+  }
+
+  double calculateTotal() {
+    double total = 0.0;
+    for (var item in widget.cartItems) {
+      total += double.parse(item['price']!);
+    }
+    return total;
   }
 }
