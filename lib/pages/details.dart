@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toolsfast/pages/order.dart';
+import 'package:toolsfast/pages/see_compte.dart';
 
 class ProductDetails extends StatefulWidget {
   final Map<String, String> product;
@@ -16,7 +17,9 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
-    total = double.parse(widget.product['price']!); // Set the initial total to the product price
+    // Remove non-numeric characters from the product price
+    String price = widget.product['price']!.replaceAll(RegExp(r'[^0-9.]'), '');
+    total = double.parse(price);// Set the initial total to the product price
 
     return Scaffold(
       appBar: AppBar(
@@ -67,9 +70,15 @@ class _ProductDetailsState extends State<ProductDetails> {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: () {
-                  // Handle checkout logic here
+                  // Navigate to the see_compte page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SeeCompte(),
+                    ),
+                  );
                 },
-                child: Text('CheckOut'),
+                child: Text('Check balance'),
               ),
             ),
             Spacer(),
@@ -79,22 +88,7 @@ class _ProductDetailsState extends State<ProductDetails> {
                 child: ElevatedButton(
                   onPressed: () {
                     // Check if the product is not already in the cart
-                    if (!cartItems.contains(widget.product)) {
-                      // Add the current product to the cart
-                      setState(() {
-                        cartItems.add(widget.product);
-                      });
 
-                      // Navigate to the OrderPage with the updated cartItems list
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => OrderPage(
-                            cartItems: cartItems,
-                          ),
-                        ),
-                      );
-                    }
                     Navigator.push(
                       context,
                       MaterialPageRoute(
