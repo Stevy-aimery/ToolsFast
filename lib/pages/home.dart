@@ -21,15 +21,15 @@ class _HomeState extends State<Home> {
 
   final List<Map<String, String>> products = [
     {
-      'name': 'Trepier Smartphone',
-      'price': '699',
+      'name': 'Smartphone',
+      'price': '2 500',
       'description': 'A high-end smartphone with a powerful processor.',
-      'image': 'images/Trepier-Smartphone.jpg',
+      'image': 'images/Trepier-smarphone.png',
       'category': 'Electronics',
     },
     {
       'name': 'Macintosh',
-      'price': '999',
+      'price': '5 999',
       'description': 'A sleek laptop with great performance.',
       'image': 'images/makboot-image.png',
       'category': 'Electronics',
@@ -52,42 +52,42 @@ class _HomeState extends State<Home> {
       'name': 'Air pods',
       'price': '499',
       'description': 'A DSLR camera with high resolution.',
-      'image': 'images/Electo2-image',
+      'image': 'images/Electo2-image.png',
       'category': 'Electronics',
     },
     {
       'name': 'T-shirt',
       'price': '29',
       'description': 'A comfortable cotton T-shirt.',
-      'image': 'image/F3-image.png',
+      'image': 'images/F3-image.png',
+      'category': 'Fashion',
+    },    
+    {
+      'name': 'Shirt woman',
+      'price': '29',
+      'description': 'A comfortable cotton T-shirt.',
+      'image': 'images/F1image.png',
       'category': 'Fashion',
     },
     {
-      'name': 'Shirt and shoes',
+      'name': 'Shirt and shoes Man',
       'price': '29',
       'description': 'A comfortable cotton T-shirt.',
-      'image': 'image/F2-image.png',
-      'category': 'Fashion',
-    },
-    {
-      'name': 'Shirt and shoes',
-      'price': '29',
-      'description': 'A comfortable cotton T-shirt.',
-      'image': 'image/F1image.png',
+      'image': 'images/F2-image.png',
       'category': 'Fashion',
     },
     {
       'name': 'Blender',
       'price': '49',
       'description': 'A powerful blender for smoothies and shakes.',
-      'image': 'image/cuissine2-image.png',
+      'image': 'images/cuissine2-image.png',
       'category': 'Home Appliances',
     },
     {
       'name': 'cooking tools',
       'price': '49',
       'description': 'A powerful blender for smoothies and shakes.',
-      'image': 'image/Cuissine.png',
+      'image': 'images/Cuissine.png',
       'category': 'Home Appliances',
     },
     {
@@ -223,6 +223,7 @@ class _HomeState extends State<Home> {
               ),
               SizedBox(height: 10),
               GridView.builder(
+                padding: EdgeInsets.only(top: 20, bottom: 50),
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
