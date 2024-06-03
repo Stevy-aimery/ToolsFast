@@ -7,6 +7,7 @@ class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key, required this.product});
 
   @override
+  // ignore: library_private_types_in_public_api
   _ProductDetailsState createState() => _ProductDetailsState();
 }
 
@@ -48,38 +49,48 @@ class _ProductDetailsState extends State<ProductDetails> {
               style: TextStyle(fontSize: 16),
             ),
             Spacer(),
-            ElevatedButton(
-              onPressed: () {
-                // Add the current product to the cart
-                setState(() {
-                  cartItems.add(widget.product);
-                });
+            Container(
+              padding: EdgeInsets.only(bottom: 30),
+              child: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Check if the product is not already in the cart
+                    if (!cartItems.contains(widget.product)) {
+                      // Add the current product to the cart
+                      setState(() {
+                        cartItems.add(widget.product);
+                      });
+                    }
 
-                // Navigate to the OrderPage
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OrderPage(cartItems: cartItems),
+                    // Navigate to the OrderPage
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => OrderPage(cartItems: cartItems),
+                      ),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color.fromRGBO(121, 60, 72, 1),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromRGBO(121, 60, 72, 1),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: const [
+                      Icon(Icons.shopping_cart, color: Colors.white),
+                      SizedBox(width: 10),
+                      Text(
+                        'Add to Cart',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  Icon(Icons.shopping_cart, color: Colors.white),
-                  SizedBox(width: 8),
-                  Text(
-                    'Add to Cart',
-                    style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                  ),
-                ],
               ),
             ),
           ],
