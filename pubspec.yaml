@@ -71,6 +71,18 @@ flutter:
     - images/Logo.png
     - images/Logo2.png
     - images/Logo2-Removebg.png
+    - images/Book2.png
+    - images/casque.png
+    - images/Cuissine.png
+    - images/cuissine2-image.png
+    - images/Ectro1-image.png
+    - images/Electo2-image.png
+    - images/F1image.png
+    - images/F2-image.png
+    - images/F3-image.png
+    - images/Frigo.png
+    - images/makboot-image.png
+    - images/Trepier-smarphone.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
